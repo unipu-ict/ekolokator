@@ -2,10 +2,9 @@
 Aplikacija za geolociranje, slikanje i evidentiranje ekološki problematičnih točaka u okolišu uz mogućnost prijave istih email-om nadležnim institucijama.
 
 ### Autori
--**Orbanić	Masimo**	  (maorban@unipu.hr)
--**Pereša	Marino**    	(maperes@unipu.hr)
--**Maretić	Antonio** 	(amaretic@unipu.hr)
-
+- **Orbanić	Masimo**	  (maorban@unipu.hr)
+- **Pereša	Marino**    	(maperes@unipu.hr)
+- **Maretić	Antonio** 	(amaretic@unipu.hr)
 
 ### Organizacija
 Sveučilište Jurja Dobrile u Puli  
