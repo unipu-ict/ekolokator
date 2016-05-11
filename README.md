@@ -6,6 +6,7 @@ Aplikacija za geolociranje, slikanje i evidentiranje ekološki problematičnih t
 -**Pereša	Marino**    	(maperes@unipu.hr)
 -**Maretić	Antonio** 	(amaretic@unipu.hr)
 
+
 ### Organizacija
 Sveučilište Jurja Dobrile u Puli  
 Odjel za informacijsko-komunikacijske tehnologije  
