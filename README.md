@@ -12,4 +12,4 @@ Mobilna aplikacija za geolociranje, slikanje i evidentiranje ekološki problemat
 Mobilne aplikacije, Ak.g. 2015./2016.  
 Voditelj: **Siniša Sovilj** (ssovilj@unipu.hr)
 
-#neka promjena
+###neka promjena
