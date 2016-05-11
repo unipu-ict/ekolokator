@@ -11,3 +11,5 @@ Mobilna aplikacija za geolociranje, slikanje i evidentiranje ekološki problemat
 [Odjel za informacijsko-komunikacijske tehnologije](http://www.unipu.hr/index.php?id=1933)  
 Mobilne aplikacije, Ak.g. 2015./2016.  
 Voditelj: **Siniša Sovilj** (ssovilj@unipu.hr)
+
+####proba
