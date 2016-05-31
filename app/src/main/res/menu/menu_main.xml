@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.masimo.ekolokator.MainActivity">
+    <item
+        android:id="@+id/upute"
+        android:orderInCategory="100"
+        android:title="@string/action_upute"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/oapp"
+        android:orderInCategory="100"
+        android:title="@string/action_oapp"
+        app:showAsAction="never" />
+</menu>
+
+

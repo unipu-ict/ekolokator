@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">EkoLokator</string>
+    <string name="action_upute">Upute za korištenje</string>
+    <string name="action_oapp">O aplikaciji</string>
+    <string name="action_back">Natrag</string>
+    <string name="opis_aplikacije">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="prijavi">Prijavi</string>
+    <string name="naziv_aplikacije">EkoLokator</string>
+    <string name="title_activity_prijava">Prijava onečišćenja</string>
+
+</resources>
