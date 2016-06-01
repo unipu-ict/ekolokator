@@ -37,6 +37,8 @@ public class TabFragment2 extends Fragment {
     }
 
 
+
+
     public void dalje(){
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.setCurrentItem(2);
