@@ -1,6 +1,8 @@
 # ekolokator
 Mobilna aplikacija za geolociranje, slikanje i evidentiranje ekološki problematičnih točaka u okolišu uz mogućnost prijave istih email-om nadležnim institucijama.
 
+![ekolokator logo](https://raw.githubusercontent.com/unipu-ict/ekolokator/master/app/src/main/res/drawable/ikona_app.png)
+
 ### Autori
 - **Orbanić	Masimo**	  (maorban@unipu.hr)
 - **Pereša	Marino**    	(maperes@unipu.hr)
