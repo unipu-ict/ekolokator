@@ -18,27 +18,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/naziv_aplikacije"
-        android:id="@+id/textView"
-        android:textSize="40dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/opis_aplikacije"
-        android:id="@+id/textView2"
+        android:id="@+id/opis"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="5dp"
+        android:theme="@style/MainText"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/prijavi"
+        android:text="Prijavi"
         android:id="@+id/prijava"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:textSize="30dp" />
+        android:theme="@style/Prijavi"
+        android:background="@drawable/prijavi_btn"
+        android:layout_margin="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Za korištenje ove aplikacije potrebna vam je internet veza, i opcionalno GPS senzor lokacije."
+        android:id="@+id/textView2"
+        android:theme="@style/Napomena"
+        android:textAlignment="center"
+        android:layout_gravity="bottom" />
+
 </LinearLayout>

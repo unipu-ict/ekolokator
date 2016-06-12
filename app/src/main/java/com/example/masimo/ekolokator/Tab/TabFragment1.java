@@ -1,27 +1,58 @@
 package com.example.masimo.ekolokator.Tab;
 
 import android.app.TabActivity;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.masimo.ekolokator.Evidencija;
 import com.example.masimo.ekolokator.PagerAdapter;
 import com.example.masimo.ekolokator.R;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class TabFragment1 extends Fragment {
+public class TabFragment1 extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
+    private LocationListener gpsListener;
+    private static GoogleMap mMap;
+    public final String LOG = "map fragment";
+    public static Marker mar;
+    public static LatLng trenutna_lokacija = new LatLng(0,0);
+    public static int trenutniOdabir=0;
+
+
+    //static final String STATE_LEVEL = "mMap";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_1,
                 container, false);
-        Button dalje = (Button) view.findViewById(R.id.dalje);
 
+
+        //gumb dalje za prijelaz na sljedeći odabir
+        Button dalje = (Button) view.findViewById(R.id.dalje);
         dalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,13 +60,202 @@ public class TabFragment1 extends Fragment {
             }
         });
 
+        //postavljenje Map fragmenta
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+        Log.i(LOG, "map fragment napravljen");
+        //MapView gMapView = (MapView) view.findViewById(R.id.map);
+        //gMapView.getMapAsync(this);
+        mapFragment.getMapAsync(this);
+
+
+        //dogvaćanje radio grupe i na temelju odabranog daljnji postupak
+        RadioGroup grupaR = (RadioGroup) view.findViewById(R.id.radiogroup); //RadioGroup
+        //sljedeć kod je Listener koji se pokrene kada se promijeni odabrani RadioButton
+        grupaR.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup grupaR, int checkedId) {
+                // checkedId je id selektrianog RadioButtona
+
+                if (checkedId == R.id.vasa_lokacija) {
+                    Log.i(LOG, "vasa_lokacija je pokrenut");
+                    postaviOnMaplongClickListener(false);
+                    //Registracija slusaca lokalnog dogadjaja u okolini
+                    postaviGpsListener(true);
+                    trenutniOdabir=1;
+
+
+                } else if (checkedId == R.id.odaberi_lokaciju) {
+                    Log.i(LOG, "odaberi lokaciju je pokrenut");
+                    //ako je postavljen gps listener ukloni ga
+                    postaviGpsListener(false);
+                    postaviOnMaplongClickListener(true);
+                    trenutniOdabir=2;
+
+                }
+            }
+        });
+
+        //kraj onCreateView metode////////////////////////
         return view;
     }
 
+    //updatenje nove lokacije
+    private void updateWithNewLocation(Location location){
+        if(location!=null){
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            trenutna_lokacija = new LatLng(lat,lng);
+            Evidencija.setPozicija(trenutna_lokacija);
+            gotolocation(lat,lng,17);
+        }
+    }
 
+
+    // prebacivanje na sljedeži tab
     public void dalje(){
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.pager);
         viewPager.setCurrentItem(1);
+    }
+
+    // klasa GPSListener za dobivanje LocationListenera
+    private class GPSListener implements LocationListener {
+
+        public void onLocationChanged(Location location){
+            //kada se promjeni lokacija pokreni sljedeću funkciju
+            updateWithNewLocation(location);
+        }
+        public void onProviderDisabled(String provider){
+            //TODO autogeneratedmethod stub
+        }
+        public void onProviderEnabled(String provider){
+            //TODO
+        }
+        public void onStatusChanged(String provider, int status, Bundle extras){
+            //TODO
+        }
+
+    }
+
+    // kada je mapa inicijlizirana pokrece se
+    @Override
+    public void onMapReady(GoogleMap googleMap){
+        //postavljanje mape
+        mMap = googleMap;
+        //tip mape
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        // ako je trenutna lokacija null onda postavi pregled Hrvatske
+        if(trenutna_lokacija.latitude != 0.0){
+            removeMarker();
+            gotolocation(trenutna_lokacija.latitude, trenutna_lokacija.longitude, 16); }
+        else {
+            //pregled hrvatske
+            gotolocationNoMarker(44.8009215, 16.4005538, 6);
+        }
+    }
+
+    //metoda koja prebacuje cameru na novu lokaciju i postavlja marker
+    public void gotolocation(double lat, double lang, float zoom){
+        //micu se markeri pozivom funkcije remove marker
+        if(mar!=null) {
+            removeMarker(); }
+        LatLng latLng = new LatLng(lat, lang);
+        MarkerOptions marker = new MarkerOptions().position(latLng).title("Vaša lokacija");
+        mar = mMap.addMarker(marker);
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
+        mMap.moveCamera(update);
+    }
+
+    // za postavljanje pogleda hrvatske, odnosno bez markera
+    public void gotolocationNoMarker(double lat, double lang, float zoom){
+        LatLng latLng = new LatLng(lat, lang);
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
+        mMap.moveCamera(update);
+    }
+
+    //kada se duze klikne na mapu
+    @Override
+    public void onMapLongClick(LatLng point) {
+        Log.i(LOG, "onlongclick");
+        trenutna_lokacija = point;
+        Evidencija.setPozicija(trenutna_lokacija);
+        if(mar!=null) {
+            removeMarker();
+        }
+        MarkerOptions marker = new MarkerOptions().position(point).title("Odabrana lokacija");
+        mar = mMap.addMarker(marker);
+        //Toast.makeText(getContext(), "tapped, point=" + point, Toast.LENGTH_LONG).show();
+    }
+
+    public void removeMarker(){
+        if(mar!=null) {
+            if (mar.isVisible()) {
+                mar.remove();
+            }
+        }
+    }
+
+    //postava listenera onlonglick
+    // potrebno zbog toga što kod gps lokacije nije potrebna, a kod odaberi lokaciju je
+    public void postaviOnMaplongClickListener(boolean postava) {
+        if(postava) {
+            mMap.setOnMapLongClickListener(this);
+        }
+        else { mMap.setOnMapLongClickListener(null); }
+    }
+
+    //postava gps listenera
+    public void postaviGpsListener(boolean postava){
+        if(postava){
+
+            gpsListener = new GPSListener();
+            String provider = Context.LOCATION_SERVICE;
+            LocationManager locationManager = (LocationManager) getContext().getSystemService(provider);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
+            Location location = locationManager.getLastKnownLocation(provider);
+            updateWithNewLocation(location);
+        }
+        else {
+            if (gpsListener != null) {
+                String provider = Context.LOCATION_SERVICE;
+                LocationManager locationManager = (LocationManager) getContext().getSystemService(provider);
+                locationManager.removeUpdates(gpsListener);
+            }
+            gpsListener = null;
+        }
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+     /*   Log.i(LOG, "on resume pozvan");
+        // ako mapa nije postavljenja
+        if(mMap==null){
+            removeMarker();
+            SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+            Log.i(LOG, "on resume pozvan i map je null");
+            //MapView gMapView = (MapView) view.findViewById(R.id.map);
+            //gMapView.getMapAsync(this);
+            mapFragment.getMapAsync(this);
+        }
+
+        if(mMap!=null) {
+            removeMarker();
+            gotolocation(trenutna_lokacija.latitude, trenutna_lokacija.longitude, 16);
+        }
+
+        //dohvacanje i postavljanje listenera
+ */
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+       /* removeMarker();
+        Log.i(LOG, "on puse pozvan");
+        Evidencija.setPozicija(trenutna_lokacija);
+        postaviGpsListener(false);
+        postaviOnMaplongClickListener(false); */
     }
 
 

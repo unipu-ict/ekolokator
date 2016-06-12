@@ -17,7 +17,7 @@ import com.example.masimo.ekolokator.Tab.TabFragment4;
 
 public class PrijavaActivity extends AppCompatActivity {
 
-   public static Evidencija evidencija;
+   public static Evidencija evidencija = new Evidencija();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

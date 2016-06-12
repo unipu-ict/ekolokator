@@ -3,21 +3,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Lokacija"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dalje"
-        android:id="@+id/dalje"
-        android:layout_gravity="center_horizontal" />
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
+        android:layout_weight="0.75"
+        />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/radiogroup"
+            android:weightSum="1">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Vaša trenutna lokacija"
+                android:id="@+id/vasa_lokacija"
+                android:checked="false"
+                android:padding="4dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="#66d555"
+                android:textColor="#FFFFFF"
+                android:layout_weight="0.5"
+                android:buttonTint="#CACAFF"/>
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Odaberite lokaciju na mapi"
+                android:id="@+id/odaberi_lokaciju"
+                android:checked="false"
+                android:layout_margin="4dp"
+                android:background="#2cc814"
+                android:textColor="#FFFFFF"
+                android:padding="4dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:buttonTint="#CACAFF"/>
+        </RadioGroup>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="right">
+
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/dalje"
+            android:background="@drawable/ic_arrow_right"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            />
+    </LinearLayout>
 
 </LinearLayout>

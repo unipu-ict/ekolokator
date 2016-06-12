@@ -3,20 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:weightSum="1">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/imgPicture"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.4" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Slika i opis"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_height="0dp"
+        android:text="Dodaj sliku"
+        android:id="@+id/dodaj_sliku"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.15"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/opisSlike"
+        android:layout_weight="0.25" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_weight="0.2">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
