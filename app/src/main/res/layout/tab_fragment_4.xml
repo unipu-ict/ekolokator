@@ -3,41 +3,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Pregled Prijave"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/emailr"
-        android:layout_gravity="center_horizontal" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/frame_only_image"
+        android:id="@+id/slikatmp"
+        android:layout_weight="0.2"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/imeprezimer"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.12"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Prijavi"
-        android:id="@+id/prijavi" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/emailr"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/brojTelefona"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lokacija"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.12"/>
+
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Natrag"
-        android:id="@+id/dalje"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="0dp"
+        android:text="Prijavi"
+        android:id="@+id/prijavi"
+        android:background="@drawable/common_btn"
+        android:theme="@style/CommonBtn"
+        android:layout_weight="0.12"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="0.2">
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/natrag"
+            android:background="@drawable/ic_arrow_left"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 </LinearLayout>

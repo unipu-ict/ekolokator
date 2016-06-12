@@ -12,7 +12,7 @@
         <item name="android:paddingLeft">4px</item>
         <item name="android:paddingBottom">4px</item>
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
@@ -23,7 +23,7 @@
         <item name="android:paddingLeft">4px</item>
         <item name="android:paddingBottom">4px</item>
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:shadowColor">#000000</item>
     </style>
 
@@ -36,6 +36,36 @@
         <item name="android:shadowDy">2</item>
         <item name="android:shadowRadius">1</item>
 
+    </style>
+
+    <style name="Slika">
+        <item name="android:padding">4dp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+
+    </style>
+
+    <style name="CommonBtn">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1</item>
+
+    </style>
+
+    <style name="KontaktTekst">
+        <item name="android:textColor">#028600</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">#bebebe</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

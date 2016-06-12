@@ -14,11 +14,11 @@ import java.sql.Time;
 public class Evidencija {
     public static LatLng pozicija;
     public static String opis;
+    public static String brojTelefona;
     public static String imeprezime;
     public static String e_mail;
     public static String broj_telefona;
     public static Uri slika;
-    public static Time vrijeme;
 
 
     Evidencija(){
@@ -49,7 +49,8 @@ public class Evidencija {
         slika= slika_t;
     }
 
-    public static void setVrijeme(Time vrijemet) { vrijeme = vrijemet; }
+    public static void setBrojTelefona(String brt){ broj_telefona = brt; }
+
 
     public static String getE_mail() {
         return e_mail;
@@ -62,5 +63,8 @@ public class Evidencija {
     public static String getLocation() { return "Lokacija:" + Double.toString(pozicija.latitude) + "," + Double.toString(pozicija.longitude) + " .";}
 
     public static LatLng getLoc() { return pozicija; }
+
+    public static String getBrojTelefona() {return brojTelefona; }
+
 }
 

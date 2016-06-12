@@ -3,11 +3,10 @@
     <string name="action_upute">Upute za korištenje</string>
     <string name="action_oapp">O aplikaciji</string>
     <string name="action_back">Natrag</string>
-    <string name="opis_aplikacije">EkoLokator je aplikacija koja služi za </string>
     <string name="naziv_aplikacije">EkoLokator</string>
     <string name="title_activity_prijava">Prijava onečišćenja</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAIjGDpVnfUQ32M8QC1dZoos8n7Y1OyskI</string>
     <string name="oapp_title">O aplikaciji</string>
     <string name="ok">U redu</string>
-    <string name="upute">Upute za koristenje</string>
+    <string name="upute">Upute za korištenje</string>
 </resources>

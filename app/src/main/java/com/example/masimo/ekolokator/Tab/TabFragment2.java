@@ -36,6 +36,7 @@ public class TabFragment2 extends Fragment {
     ImageView iv;
     private static final int SELECTED_PICTURE=1;
     public static final String LOG = "fragment2";
+    public static boolean slika_postavljena = false;
 
     EditText opiss;
 
@@ -130,8 +131,12 @@ public class TabFragment2 extends Fragment {
                     Log.i("mojtag",dir.toString());
                     dir.mkdir();
                     File file = new File(dir, "temp_ekolokator.jpg");
+
+                    if(file.exists()) {
+                        file.delete(); }
+
                     FileOutputStream os = new FileOutputStream(file);
-                    tempPhoto.compress(Bitmap.CompressFormat.JPEG, 70, os);
+                    tempPhoto.compress(Bitmap.CompressFormat.JPEG, 75, os);
 
                    // inputStream = getActivity().getContentResolver().openInputStream(tempimg);
 
@@ -141,6 +146,7 @@ public class TabFragment2 extends Fragment {
 
                     // show the image to the user
                     iv.setImageBitmap(tempPhoto);
+                    slika_postavljena=true;
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -192,6 +198,19 @@ public class TabFragment2 extends Fragment {
             }
         }
         return inSampleSize;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(slika_postavljena){
+            String photoPath = Environment.getExternalStorageDirectory()+"/temp_ekolokator.jpg";
+            Bitmap temp_slika = BitmapFactory.decodeFile(photoPath);
+            iv.setImageBitmap(temp_slika);
+        }
+
+
     }
 
 

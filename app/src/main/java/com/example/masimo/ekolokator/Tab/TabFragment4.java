@@ -1,6 +1,8 @@
 package com.example.masimo.ekolokator.Tab;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,16 +28,18 @@ import java.io.File;
  */
 
 public class TabFragment4 extends Fragment {
+    ImageView slikica;
     static TextView imeprezime;
     static TextView email;
     static TextView lokacija;
+    static TextView brojTel;
     public static final String LOG ="frag4";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_4,
                 container, false);
 
-        Button dalje = (Button) view.findViewById(R.id.dalje);
+        Button dalje = (Button) view.findViewById(R.id.natrag);
 
         dalje.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,15 +49,19 @@ public class TabFragment4 extends Fragment {
         });
 
 
+        slikica = (ImageView) view.findViewById(R.id.slikatmp);
         imeprezime = (TextView) view.findViewById(R.id.imeprezimer);
         email = (TextView) view.findViewById(R.id.emailr);
-        //lokacija = (TextView) view.findViewById(R.id.lokacija);
+        lokacija = (TextView) view.findViewById(R.id.lokacija);
+        brojTel = (TextView) view.findViewById(R.id.brojTelefona);
         String sImeprez = Evidencija.getImeprezime();
         String sEmail = Evidencija.getE_mail();
         String lokacija_t = Evidencija.getLocation();
-        imeprezime.setText(sImeprez);
-        email.setText(sEmail);
-        //lokacija.setText(lokacija_t);
+        String brojTela = Evidencija.getBrojTelefona();
+        imeprezime.setText("Ime i prezime: " + sImeprez);
+        email.setText("e-mail: " + sEmail);
+        lokacija.setText("Lokacija: "+lokacija_t);
+        brojTel.setText("Broj telefona:" + brojTela);
 
         Button prijavi = (Button) view.findViewById(R.id.prijavi) ;
 
@@ -85,9 +94,11 @@ public class TabFragment4 extends Fragment {
         String sImeprez = Evidencija.getImeprezime();
         String sEmail = Evidencija.getE_mail();
         String lokacijat = Evidencija.getLocation();
-        imeprezime.setText(sImeprez);
-        email.setText(sEmail);
-        // lokacija.setText(lokacijat);
+        String brojTela = Evidencija.getBrojTelefona();
+        imeprezime.setText("Ime i prezime: " + sImeprez);
+        email.setText("e-mail: " + sEmail);
+        lokacija.setText("Lokacija: "+lokacijat);
+        brojTel.setText("Broj telefona:" + brojTela);
         // neki komentar
     }
 
@@ -100,9 +111,9 @@ public class TabFragment4 extends Fragment {
             Uri slika = Uri.fromFile(file);
             Log.i (LOG, "put: " + slika.toString());
             String tekst_poruke = "" +
-                    "Lokacija: http://maps.google.com/maps?q=" + Double.toString(Evidencija.getLoc().latitude) + "," + Double.toString(Evidencija.getLoc().longitude) + "&t=h \n " +
-                    "Opis:" + Evidencija.opis + "\n" +
-                    "Informacije o pošiljtelju: IME i PREZIME: " + Evidencija.getImeprezime() + ", E-MAIL: " + Evidencija.getE_mail() + " \n";
+                    "Lokacija: http://maps.google.com/maps?q=" + Double.toString(Evidencija.getLoc().latitude) + "," + Double.toString(Evidencija.getLoc().longitude) + "&t=h \n \n" +
+                    "Opis:" + Evidencija.opis + "\n \n" +
+                    "Informacije o pošiljtelju: IME i PREZIME: " + Evidencija.getImeprezime() + ", E-MAIL: " + Evidencija.getE_mail() + " \n \n";
 
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
@@ -117,6 +128,17 @@ public class TabFragment4 extends Fragment {
             }
         } else {
             Toast.makeText(getActivity(), "E-mail nije dobar", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(TabFragment2.slika_postavljena){
+            String photoPath = Environment.getExternalStorageDirectory()+"/temp_ekolokator.jpg";
+            Bitmap temp_slika = BitmapFactory.decodeFile(photoPath);
+            slikica.setImageBitmap(temp_slika);
         }
     }
 }

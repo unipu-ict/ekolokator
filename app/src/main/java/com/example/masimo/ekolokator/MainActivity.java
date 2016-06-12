@@ -66,22 +66,33 @@ public class MainActivity extends AppCompatActivity {
             case R.id.oapp:
                 adb.setTitle(getString(R.string.oapp_title));
                 //adb.setMessage(getString(R.string.opis_aplikacije));
-                adb.setMessage("Lorem ipsum dolor sit amet, vix probatus forensibus te. Sed ex diceret detraxit, ad cum accusam omittam, no mucius repudiare eam. Te nostrum referrentur voluptatibus per. Vix habeo dicta tantas in. Ne ferri delicata sadipscing est, est quando impedit epicuri eu. Ipsum dictas no vis.\n" +
-                        "\n" +
-                        "Sed at veri libris, eu disputando persequeris eos. Unum vituperata eum ad, propriae officiis cu vis, id sint putent eos. Ad quod audire nec, no sea luptatum tincidunt. Usu te aeterno corpora principes, te autem virtute aliquid eos. No alii appetere vis, his latine accumsan suscipiantur ad. Dolorem ceteros suscipiantur te vis, vel elit rebum incorrupte te.\n" +
-                        "\n" +
-                        "Eu eos recusabo convenire assentior. An sumo percipit persecuti vix, appareat vulputate at sit, eros brute adversarium no nam. Rebum velit his cu. Putant oporteat pro at, vix tale etiam indoctum ei, ut omnium mentitum duo. Pri ut congue voluptatibus.");
+                String oApp= "Ova aplikacija je nastala kao dio kolegija <b>Mobline aplikacije, na Odjelu za informacijske i komunikacijske tehnologije, Sveučilišta Jurja Dobrile u Puli.</b>\n" +
+                        "<br>" +
+                        "Apikaciju su napravili studenti <b>Antonio Maretić, Masimo Orbanić i Marino Pereša </b>, pod mentorstvom <b>doc.dr.sc. Siniše Sovilja.</b>\n" +
+                        "<br>" +
+                        "<b>OIKT, UNIPU, 2016 </b>";
+                adb.setMessage(Html.fromHtml(oApp));
                 adb.show();
-                /*Toast toast = Toast.makeText(this, "Aktivnost koja prikazuje tko je izašto napravio aplikaciju", Toast.LENGTH_SHORT);
-                toast.show();*/
+
                 return true;
 
             case R.id.upute:
                 adb.setTitle(getString(R.string.upute));
-                adb.setMessage(getString(R.string.opis_aplikacije));
+                String uputeZaKoristenje = "Napomena: za korištenje ove aplikacije potrebna ja INTERNET VEZA. Prije prijave pobrinite se da imate potrebne fotografije, tokom rada aplikacije nije moguće raditi dodatne fotografije.<br>Sve nepotpune prijave biti će ignorirane!<br><br> \n" +
+                        "Prijava se započinje nakon što se na početnom ekranu aplikacije klikne gumb PRIJAVI. \n" +
+                        "Nakon toga započinje prijava onečišćenja. \n" +
+                        "<br><br>" +
+                        "Prvo što se unosi je LOKACIJA. Lokaciju se može odabrati preko odabira 'Vaša trenutna lokacija' gdje se za lokaciju postavlja vaša trenutna lokacija, ili preko odabira 'Odaberite na mapi', gdje na mapi označite željenu lokaciju na način da <b>duže držite pritisnuto mjesto na mapi</b>." +
+                        "<br><br>" +
+                        "Nakon toga se odabire SLIKA i OPIS. Slika se odabire tako da se pritisne na gumb 'Dodaj sliku', i nakon toga odaberete željenu sliku u Vašoj galeriji. Nakon toga u predviđeno polje se unese OPIS onečišćenja. Tokom pisanja opisa nastojite čim detaljnije i opširnije opisati onečišćenje." +
+                        "<br><br>" +
+                        "Nakon slike i opisa unesite vaše kontakt informacije, odnosno vaše ime i prezime i email, kako bi vas kasnije ako je potrebno, mogli konaktirati.\n" +
+                        "<br><br>" +
+                        "Kada ste unijeli sve podatke Kliknite na karticu 'PREGLED', gdje ćete moći pregledati unesene podatke, i izvršiti Slanje onečišćenja. Slanje se obavlja preko gumba 'PRIJAVI'. Nakon što je taj gumb kliknut, pitat će vas se da odaberete e-mail aplikaciju, preferirana aplikacija je Gmail. U E-mail aplikaciji moći ćete vidjeti pregled e-mail koji će se poslati nadležnim službama. <b>Konačno slanje se obavlja klikom GUMBA ZA SLANJE unutar e-mail aplikacije. </b>" +
+                        "<br><br>" +
+                        "Hvala Vam na korištenju EkoLokatora.";
+                adb.setMessage(Html.fromHtml(uputeZaKoristenje));
                 adb.show();
-                /*Toast tost = Toast.makeText(this, "Aktivnost koja prikazuje na upute o korištenju aplikacije", Toast.LENGTH_SHORT);
-                tost.show();*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
