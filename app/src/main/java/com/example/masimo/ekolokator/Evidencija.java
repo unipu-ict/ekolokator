@@ -14,7 +14,6 @@ import java.sql.Time;
 public class Evidencija {
     public static LatLng pozicija;
     public static String opis;
-    public static String brojTelefona;
     public static String imeprezime;
     public static String e_mail;
     public static String broj_telefona;
@@ -25,6 +24,8 @@ public class Evidencija {
         imeprezime="Nepoznato";
         e_mail="Nepoznato";
         pozicija = new LatLng(0,0);
+        broj_telefona = "Nepoznato";
+        opis = "Bez opisa";
     }
 
     public static void setBroj_telefona(String broj_telefonat) { broj_telefona = broj_telefonat; }
@@ -64,7 +65,9 @@ public class Evidencija {
 
     public static LatLng getLoc() { return pozicija; }
 
-    public static String getBrojTelefona() {return brojTelefona; }
+    public static String getBrojTelefona() {return broj_telefona; }
+
+    public static String getOpis(){return opis;}
 
 }
 

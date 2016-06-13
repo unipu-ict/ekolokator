@@ -99,7 +99,7 @@ public class TabFragment3 extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                Evidencija.setBroj_telefona(s.toString());
+                Evidencija.setBrojTelefona(s.toString());
             }
         });
 

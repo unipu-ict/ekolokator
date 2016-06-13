@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,8 +32,9 @@ public class TabFragment4 extends Fragment {
     ImageView slikica;
     static TextView imeprezime;
     static TextView email;
-    static TextView lokacija;
     static TextView brojTel;
+    static TextView opis;
+
     public static final String LOG ="frag4";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,17 +53,18 @@ public class TabFragment4 extends Fragment {
 
         slikica = (ImageView) view.findViewById(R.id.slikatmp);
         imeprezime = (TextView) view.findViewById(R.id.imeprezimer);
+        opis = (TextView) view.findViewById(R.id.opis_p);
         email = (TextView) view.findViewById(R.id.emailr);
-        lokacija = (TextView) view.findViewById(R.id.lokacija);
         brojTel = (TextView) view.findViewById(R.id.brojTelefona);
+
         String sImeprez = Evidencija.getImeprezime();
         String sEmail = Evidencija.getE_mail();
-        String lokacija_t = Evidencija.getLocation();
         String brojTela = Evidencija.getBrojTelefona();
-        imeprezime.setText("Ime i prezime: " + sImeprez);
-        email.setText("e-mail: " + sEmail);
-        lokacija.setText("Lokacija: "+lokacija_t);
-        brojTel.setText("Broj telefona:" + brojTela);
+        String opis_t = Evidencija.getOpis();
+        imeprezime.setText(Html.fromHtml("<b>Ime i prezime:</b> " + sImeprez));
+        email.setText(Html.fromHtml("<b>e-mail:</b> " + sEmail));
+        brojTel.setText(Html.fromHtml("<b>Broj telefona: </b>" + brojTela));
+        opis.setText(Html.fromHtml("<b>Opis: </b> " + opis_t));
 
         Button prijavi = (Button) view.findViewById(R.id.prijavi) ;
 
@@ -93,17 +96,21 @@ public class TabFragment4 extends Fragment {
     public static void osvjezi(){
         String sImeprez = Evidencija.getImeprezime();
         String sEmail = Evidencija.getE_mail();
-        String lokacijat = Evidencija.getLocation();
         String brojTela = Evidencija.getBrojTelefona();
-        imeprezime.setText("Ime i prezime: " + sImeprez);
-        email.setText("e-mail: " + sEmail);
-        lokacija.setText("Lokacija: "+lokacijat);
-        brojTel.setText("Broj telefona:" + brojTela);
+        String opis_t = Evidencija.getOpis();
+
+        imeprezime.setText(Html.fromHtml("<b>Ime i prezime:</b> " + sImeprez));
+        email.setText(Html.fromHtml("<b>e-mail:</b> " + sEmail));
+        brojTel.setText(Html.fromHtml("<b>Broj telefona: </b>" + brojTela));
+        opis.setText(Html.fromHtml("<b>Opis: </b> " + opis_t));
+
         // neki komentar
     }
 
     public boolean provjeriEmail(CharSequence email) {
-        return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        if(Evidencija.getE_mail()!="Nepoznato") {
+         return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches(); }
+        return true;
     }
     public void prijaviProblem(){
         if(provjeriEmail(Evidencija.getE_mail())){
@@ -113,7 +120,7 @@ public class TabFragment4 extends Fragment {
             String tekst_poruke = "" +
                     "Lokacija: http://maps.google.com/maps?q=" + Double.toString(Evidencija.getLoc().latitude) + "," + Double.toString(Evidencija.getLoc().longitude) + "&t=h \n \n" +
                     "Opis:" + Evidencija.opis + "\n \n" +
-                    "Informacije o pošiljtelju: IME i PREZIME: " + Evidencija.getImeprezime() + ", E-MAIL: " + Evidencija.getE_mail() + " \n \n";
+                    "Informacije o pošiljtelju: IME i PREZIME: " + Evidencija.getImeprezime() + ", E-MAIL: " + Evidencija.getE_mail() + ", BROJ TELEFONA: " + Evidencija.getBrojTelefona() + " \n \n";
 
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
