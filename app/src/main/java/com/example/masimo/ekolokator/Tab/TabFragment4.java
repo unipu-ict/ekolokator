@@ -122,6 +122,7 @@ public class TabFragment4 extends Fragment {
                     "Opis:" + Evidencija.opis + "\n \n" +
                     "Informacije o pošiljtelju: IME i PREZIME: " + Evidencija.getImeprezime() + ", E-MAIL: " + Evidencija.getE_mail() + ", BROJ TELEFONA: " + Evidencija.getBrojTelefona() + " \n \n";
 
+            //kreiranje intenta za poruku
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"masimo.orbanic@gmail.com"});
