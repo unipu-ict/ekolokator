@@ -125,10 +125,10 @@ public class TabFragment4 extends Fragment {
             //kreiranje intenta za poruku
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
-            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"masimo.orbanic@gmail.com"});
+            i.putExtra(Intent.EXTRA_EMAIL,   new String[]{"masimo.orbanic@gmail.com"});
             i.putExtra(Intent.EXTRA_SUBJECT, "Prijava onečišćenja putem EkoLokator aplikacije");
             i.putExtra(Intent.EXTRA_TEXT   , tekst_poruke);
-            i.putExtra(Intent.EXTRA_STREAM, slika);
+            i.putExtra(Intent.EXTRA_STREAM,  slika);
             try {
                 startActivity(Intent.createChooser(i, "Slanje e-maila..."));
             } catch (android.content.ActivityNotFoundException ex) {
