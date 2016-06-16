@@ -11,39 +11,61 @@
         android:layout_height="0dp"
         android:src="@drawable/frame_only_image"
         android:id="@+id/slikatmp"
-        android:layout_weight="0.2"/>
+        android:layout_weight="0.3"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/opis_p"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#11e615" />
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/imeprezimer"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.12"/>
+        android:layout_weight="0.1"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#11e615" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/emailr"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.12"/>
+        android:layout_weight="0.1"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="#11e615" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/brojTelefona"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.12"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/lokacija"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.12"/>
+        android:layout_weight="0.1"
+        android:gravity="center"
+        />
 
 
     <Button
@@ -53,7 +75,7 @@
         android:id="@+id/prijavi"
         android:background="@drawable/common_btn"
         android:theme="@style/CommonBtn"
-        android:layout_weight="0.12"/>
+        android:layout_weight="0.1"/>
 
     <LinearLayout
         android:layout_width="match_parent"

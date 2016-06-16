@@ -13,6 +13,7 @@
         android:layout_weight="0.4"
         android:src="@drawable/frame_only_image"
         android:theme="@style/Slika"
+        android:layout_marginTop="5dp"
         />
 
     <Button
@@ -23,6 +24,7 @@
         android:id="@+id/dodaj_sliku"
         android:theme="@style/CommonBtn"
         android:background="@drawable/common_btn"
+        android:layout_marginTop="5dp"
         android:layout_weight="0.1"/>
 
     <EditText
@@ -31,6 +33,7 @@
         android:id="@+id/opisSlike"
         android:layout_weight="0.3"
         android:hint="Unesite opis onečišćenja koje želite prijaviti."
+        android:layout_marginTop="5dp"
         android:gravity="top" />
 
     <LinearLayout

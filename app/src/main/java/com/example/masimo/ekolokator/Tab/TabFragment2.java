@@ -109,13 +109,11 @@ public class TabFragment2 extends Fragment {
 
 
         if (resultCode == Activity.RESULT_OK) {
-            // if we are here, everything processed successfully.
-            if (requestCode == SELECTED_PICTURE) {
-                // if we are here, we are hearing back from the image gallery.
 
-                // the address of the image on the SD Card.
-                Uri imageUri = data.getData();
-                Evidencija.setSlika(imageUri);
+            if (requestCode == SELECTED_PICTURE) {
+
+                //Uri imageUri = data.getData();
+                //Evidencija.setSlika(imageUri);
 
                 // declare a stream to read the image data from the SD Card.
                 InputStream inputStream;
@@ -124,9 +122,12 @@ public class TabFragment2 extends Fragment {
                 try {
 
                     Bitmap tempPhoto = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+                    //generiranje nove bitmap slike
                     tempPhoto = Bitmap.createScaledBitmap(tempPhoto, 1024,765, false);
+
+                    // definiranje File intstance nove slike
                     File sdcard = Environment.getExternalStorageDirectory();
-                    Log.i("mojtag", sdcard.toString());
+                    //Log.i("mojtag", sdcard.toString());
                     File dir = new File(sdcard.getAbsolutePath());
                     Log.i("mojtag",dir.toString());
                     dir.mkdir();
@@ -146,6 +147,7 @@ public class TabFragment2 extends Fragment {
 
                     // show the image to the user
                     iv.setImageBitmap(tempPhoto);
+                    //flag za postavljenu sliku
                     slika_postavljena=true;
 
                 } catch (FileNotFoundException e) {
@@ -162,43 +164,6 @@ public class TabFragment2 extends Fragment {
     }
 
 
-
-    public static Bitmap decodeSampledBitmapFromResource(String path,int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeFile(path, options);
-    }
-
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-        return inSampleSize;
-    }
 
     @Override
     public void onResume(){
