@@ -1,7 +1,7 @@
 # EkoLokator
 Mobilna aplikacija za geolociranje, slikanje i evidentiranje ekološki problematičnih točaka u okolišu uz mogućnost prijave istih email-om nadležnim institucijama.
 
-#Napomena
+###3Napomena
 Trenutna verzija ne radi na Android 6.0!
 
 ![ekolokator logo](https://raw.githubusercontent.com/unipu-ict/ekolokator/master/app/src/main/res/drawable/ikona_app.png)
